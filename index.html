@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary My Love ❤️</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rosepink: {
+                            50: '#fff0f3',
+                            100: '#ffccd5',
+                            200: '#ffb3c1',
+                            300: '#ff8fa3',
+                            400: '#ff758f',
+                            500: '#ff4d6d',
+                            600: '#c9184a',
+                            700: '#a4133c',
+                            800: '#800f2f',
+                            900: '#590d22',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        cursive: ['"Sacramento"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff0f3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff8fa3;
+            border-radius: 10px;
+        }
+
+        /* Floating Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        /* Heart Particles */
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) scale(0.5) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        
+        .glass-card-dark {
+            background: rgba(255, 240, 243, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 204, 213, 0.8);
+        }
+
+        /* Interactive Envelope Animation */
+        .envelope-wrapper {
+            perspective: 1000px;
+        }
+        
+        .envelope {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+
+        .envelope.open .top-flap {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .top-flap {
+            transform-origin: top;
+            transition: transform 0.4s ease 0.2s, z-index 0.2s;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-rosepink-50 via-pink-100 to-red-50 text-slate-800 font-sans min-h-screen relative overflow-x-hidden">
+
+    <!-- Container Partikel Hati -->
+    <div id="heart-container"></div>
+
+    <!-- Music Player Floating Widget -->
+    <div class="fixed top-4 right-4 z-50">
+        <div class="glass-card rounded-full p-2 pr-4 flex items-center gap-3 shadow-lg border border-rosepink-200">
+            <button id="musicToggleBtn" onclick="toggleMusic()" class="w-10 h-10 rounded-full bg-rosepink-500 text-white flex items-center justify-center hover:bg-rosepink-600 transition-all shadow-md focus:outline-none">
+                <i id="musicIcon" class="fa-solid fa-music text-sm"></i>
+            </button>
+            <div class="text-xs">
+                <p class="font-semibold text-rosepink-900 leading-tight">Romantic Melody</p>
+                <p id="musicStatus" class="text-rosepink-500 text-[10px]">Klik untuk memutar</p>
+            </div>
+        </div>
+        <!-- Embedded audio element (Lagu Instrumental Romantis Lembut) -->
+        <audio id="bgMusic" loop preload="auto">
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112183.mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
+    </div>
+
+    <!-- HERO / HEADER SECTION -->
+    <header class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 pt-12 pb-8">
+        <div class="animate-float mb-4">
+            <span class="inline-block bg-rosepink-100 text-rosepink-600 text-sm font-medium px-4 py-1.5 rounded-full shadow-sm border border-rosepink-200">
+                ✨ Happy Anniversary ✨
+            </span>
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-rosepink-900 tracking-tight max-w-4xl leading-tight mb-4">
+            Merayakan Cinta <br class="hidden sm:inline"> &amp; Perjalanan Kita
+        </h1>
+
+        <p class="font-cursive text-3xl sm:text-4xl text-rosepink-600 max-w-xl mb-8">
+            "Setiap detik bersamamu adalah cerita favoritku."
+        </p>
+
+        <!-- DAYS COUNTER BOX -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 max-w-xl w-full shadow-xl border border-white/80 transform hover:scale-[1.01] transition-all">
+            <h3 class="text-xs font-bold uppercase tracking-widest text-rosepink-500 mb-4">
+                <i class="fa-solid fa-heart mr-1"></i> Kita Telah Bersama Selama <i class="fa-solid fa-heart ml-1"></i>
+            </h3>
+            
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div class="bg-white/80 p-3 sm:p-4 rounded-xl border border-rosepink-100 shadow-sm">
+                    <span id="daysCount" class="block font-serif text-2xl sm:text-4xl font-bold text-rosepink-700">0</span>
+                    <span class="text-[10px] sm:text-xs text-slate-500 font-medium uppercase">Hari</span>
+                </div>
+                <div class="bg-white/80 p-3 sm:p-4 rounded-xl border border-rosepink-100 shadow-sm">
+                    <span id="hoursCount" class="block font-serif text-2xl sm:text-4xl font-bold text-rosepink-700">0</span>
+                    <span class="text-[10px] sm:text-xs text-slate-500 font-medium uppercase">Jam</span>
+                </div>
+                <div class="bg-white/80 p-3 sm:p-4 rounded-xl border border-rosepink-100 shadow-sm">
+                    <span id="minutesCount" class="block font-serif text-2xl sm:text-4xl font-bold text-rosepink-700">0</span>
+                    <span class="text-[10px] sm:text-xs text-slate-500 font-medium uppercase">Menit</span>
+                </div>
+                <div class="bg-white/80 p-3 sm:p-4 rounded-xl border border-rosepink-100 shadow-sm">
+                    <span id="secondsCount" class="block font-serif text-2xl sm:text-4xl font-bold text-rosepink-700">0</span>
+                    <span class="text-[10px] sm:text-xs text-slate-500 font-medium uppercase">Detik</span>
+                </div>
+            </div>
+
+            <!-- Date Picker Mini / Custom Target Date -->
+            <div class="mt-4 pt-4 border-t border-rosepink-100 flex items-center justify-between text-xs text-slate-500">
+                <span>Tanggal Jadian: <strong id="startDateText" class="text-rosepink-700">14 Februari 2023</strong></span>
+                <button onclick="openDateModal()" class="text-rosepink-600 hover:text-rosepink-800 underline flex items-center gap-1 font-medium">
+                    <i class="fa-solid fa-pen-to-square"></i> Ubah Tanggal
+                </button>
+            </div>
+        </div>
+
+        <div class="mt-12 animate-bounce">
+            <a href="#timeline" class="text-rosepink-400 hover:text-rosepink-600 transition-colors">
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN SECTION: TIMELINE -->
+    <section id="timeline" class="py-16 px-4 max-w-5xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+            <span class="text-rosepink-500 font-semibold text-sm tracking-wider uppercase">Garis Waktu Kenangan</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-bold text-rosepink-900 mt-1">Momen Indah Berdua</h2>
+            <div class="w-16 h-1 bg-rosepink-400 mx-auto mt-4 rounded-full"></div>
+            
+            <!-- Add Memory Button -->
+            <button onclick="openAddMemoryModal()" class="mt-6 inline-flex items-center gap-2 bg-rosepink-500 hover:bg-rosepink-600 text-white font-medium px-5 py-2.5 rounded-full shadow-lg shadow-rosepink-500/20 transition-all text-sm">
+                <i class="fa-solid fa-plus"></i> Tambah Kenangan Baru
+            </button>
+        </div>
+
+        <!-- TIMELINE CONTAINER -->
+        <div class="relative wrap overflow-hidden p-2 sm:p-10">
+            <!-- Vertical Line -->
+            <div class="border-2-2 absolute border-opacity-20 border-rosepink-400 h-full border text-center left-1/2 -ml-[1px]"></div>
+
+            <div id="timelineContainer">
+                <!-- Timeline items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE LOVE NOTE / SURAT SURPRISE -->
+    <section class="py-20 px-4 bg-gradient-to-t from-rosepink-100/50 to-transparent relative z-10">
+        <div class="max-w-2xl mx-auto text-center">
+            <span class="text-rosepink-500 font-semibold text-sm tracking-wider uppercase">Pesan Khusus</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-rosepink-900 mt-1 mb-8">Surat Cinta Untukmu</h2>
+
+            <!-- Envelope Card -->
+            <div class="glass-card p-8 rounded-3xl shadow-xl border border-white flex flex-col items-center">
+                <div class="w-20 h-20 bg-rosepink-100 text-rosepink-500 rounded-full flex items-center justify-center text-3xl mb-4 shadow-inner animate-pulse">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-rosepink-900 mb-2">Ada Surat Rahasia Nih!</h3>
+                <p class="text-slate-600 text-sm mb-6 max-w-md">
+                    Aku menuliskan sedikit ungkapan perasaan tentang seberapa berartinya kamu dalam hidupku. Klik tombol di bawah untuk membukanya.
+                </p>
+                <button onclick="openLetterModal()" class="bg-gradient-to-r from-rosepink-500 to-red-500 hover:from-rosepink-600 hover:to-red-600 text-white font-bold px-8 py-3.5 rounded-full shadow-lg shadow-rosepink-500/30 transform hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-heart"></i> Buka Surat Ucapan
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-xs text-rosepink-700/80 border-t border-rosepink-200/50">
+        <p>Dibuat dengan <i class="fa-solid fa-heart text-rosepink-500 mx-1"></i> Selamanya Bersama</p>
+    </footer>
+
+    <!-- MODAL: Buka Surat Cinta -->
+    <div id="letterModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-card-dark max-w-lg w-full rounded-3xl p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeLetterModal()" class="absolute top-4 right-4 text-slate-400 hover:text-rosepink-600 w-8 h-8 rounded-full flex items-center justify-center bg-white/80">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <span class="font-cursive text-3xl text-rosepink-600">Surat Ucapan</span>
+                <h3 class="font-serif text-2xl font-bold text-rosepink-900">Happy Anniversary!</h3>
+            </div>
+
+            <div class="prose text-slate-700 text-sm sm:text-base leading-relaxed space-y-4 font-sans text-justify">
+                <p>
+                    Halo Sayang,
+                </p>
+                <p>
+                    Selamat hari anniversary! Tidak terasa waktu berlalu begitu cepat saat aku melewatinya bersamamu. Setiap momen, dari tawa kecil hingga perjalanan jauh yang kita lalui, memiliki arti yang sangat spesial bagiku.
+                </p>
+                <p>
+                    Terima kasih telah menjadi teman berbagi cerita, pendukung terhebatku, dan alasan di balik senyumku setiap hari. Terima kasih atas kesabaran dan kasih sayang yang tak pernah usai.
+                </p>
+                <p>
+                    Semoga hubungan kita selalu dipenuhi kebahagiaan, kedamaian, dan cinta yang semakin bertumbuh. Aku berharap bisa terus membuat lebih banyak kenangan indah bersamamu di tahun-tahun mendatang.
+                </p>
+                <p class="text-right font-serif font-bold text-rosepink-800 pt-4">
+                    Dengan seluruh cintaku,<br>
+                    <span class="font-cursive text-2xl text-rosepink-600">Aku yang mencintaimu ❤️</span>
+                </p>
+            </div>
+
+            <div class="mt-8 text-center">
+                <button onclick="closeLetterModal()" class="bg-rosepink-500 text-white font-medium px-6 py-2 rounded-full hover:bg-rosepink-600 transition-colors text-sm">
+                    Tutup Surat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Ubah Tanggal Jadian -->
+    <div id="dateModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white max-w-md w-full rounded-2xl p-6 shadow-2xl relative">
+            <h3 class="font-serif text-xl font-bold text-rosepink-900 mb-2">Atur Tanggal Jadian</h3>
+            <p class="text-xs text-slate-500 mb-4">Pilih tanggal awal hubungan kalian untuk menghitung total waktu bersama.</p>
+            
+            <div class="mb-4">
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Pilih Tanggal:</label>
+                <input type="date" id="startDateInput" class="w-full border border-rosepink-200 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-rosepink-400 focus:outline-none">
+            </div>
+
+            <div class="flex justify-end gap-2">
+                <button onclick="closeDateModal()" class="px-4 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100">Batal</button>
+                <button onclick="saveStartDate()" class="px-4 py-2 rounded-lg text-xs font-medium bg-rosepink-500 text-white hover:bg-rosepink-600 shadow-sm">Simpan Tanggal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Tambah / Edit Kenangan Timeline -->
+    <div id="memoryModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white max-w-md w-full rounded-2xl p-6 shadow-2xl relative">
+            <h3 id="memoryModalTitle" class="font-serif text-xl font-bold text-rosepink-900 mb-2">Tambah Kenangan Baru</h3>
+            <p class="text-xs text-slate-500 mb-4">Isi momen spesial dan tautan foto Anda bersama pasangan.</p>
+            
+            <form id="memoryForm" onsubmit="handleSaveMemory(event)">
+                <input type="hidden" id="memoryId">
+                
+                <div class="mb-3">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Judul Momen:</label>
+                    <input type="text" id="memoryTitle" placeholder="Contoh: Kencan Pertama" required class="w-full border border-rosepink-200 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-rosepink-400 focus:outline-none">
+                </div>
+
+                <div class="mb-3">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Tanggal / Bulan:</label>
+                    <input type="text" id="memoryDate" placeholder="Contoh: 14 Feb 2023" required class="w-full border border-rosepink-200 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-rosepink-400 focus:outline-none">
+                </div>
+
+                <div class="mb-3">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">URL Foto (Gambar):</label>
+                    <input type="url" id="memoryImage" placeholder="https://images.unsplash.com/..." required class="w-full border border-rosepink-200 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-rosepink-400 focus:outline-none">
+                    <p class="text-[10px] text-slate-400 mt-1">Tips: Gunakan link foto Unsplash, Imgur, atau link gambar publik lainnya.</p>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Keterangan / Cerita Singkat:</label>
+                    <textarea id="memoryDesc" rows="3" placeholder="Tulis catatan kecil tentang hari itu..." required class="w-full border border-rosepink-200 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-rosepink-400 focus:outline-none"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="closeMemoryModal()" class="px-4 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100">Batal</button>
+                    <button type="submit" class="px-4 py-2 rounded-lg text-xs font-medium bg-rosepink-500 text-white hover:bg-rosepink-600 shadow-sm">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATA DEFAULT MEMORY TIMELINE ---
+        let memories = [
+            {
+                id: 1,
+                date: "14 Februari 2023",
+                title: "Kencan Pertama & Awal Cerita",
+                image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80",
+                desc: "Hari di mana semuanya dimulai. Canggung tapi manis, perbincangan berjam-jam yang membuat kita sadar ada hal spesial di antara kita."
+            },
+            {
+                id: 2,
+                date: "10 Juni 2023",
+                title: "Liburan Musim Panas Bersama",
+                image: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80",
+                desc: "Menikmati matahari terbenam di tepi pantai. Momen sederhana tapi membawa kehangatan yang tak terlupakan."
+            },
+            {
+                id: 3,
+                date: "25 Desember 2023",
+                title: "Merayakan Akhir Tahun",
+                image: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80",
+                desc: "Saling memberi hadiah kecil, makan malam bersama, dan membuat harapan untuk perjalanan kita selanjutnya."
+            }
+        ];
+
+        // --- TANGGAL JADIAN (Default) ---
+        let anniversaryDate = new Date("2023-02-14T00:00:00");
+
+        // --- RENDER TIMELINE ---
+        function renderTimeline() {
+            const container = document.getElementById("timelineContainer");
+            container.innerHTML = "";
+
+            memories.forEach((item, index) => {
+                const isLeft = index % 2 === 0;
+
+                const cardHtml = `
+                    <div class="mb-12 flex justify-between items-center w-full ${isLeft ? 'flex-row-reverse left-timeline' : 'right-timeline'} flex-col md:flex-row">
+                        <div class="order-1 w-full md:w-5/12"></div>
+                        
+                        <!-- Timeline Pin -->
+                        <div class="z-20 flex items-center order-1 bg-rosepink-500 shadow-lg w-10 h-10 rounded-full border-4 border-white justify-center my-4 md:my-0">
+                            <i class="fa-solid fa-heart text-white text-xs"></i>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="order-1 glass-card rounded-2xl shadow-xl w-full md:w-5/12 p-5 border border-white/80 group hover:-translate-y-1 transition-all">
+                            <div class="relative overflow-hidden rounded-xl mb-4 aspect-video shadow-inner bg-rosepink-100">
+                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80'">
+                                <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-rosepink-700 text-[11px] font-bold px-3 py-1 rounded-full shadow">
+                                    ${item.date}
+                                </span>
+                            </div>
+                            <h3 class="font-serif font-bold text-rosepink-900 text-lg sm:text-xl mb-1">${item.title}</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">${item.desc}</p>
+                            
+                            <div class="flex justify-end gap-2 pt-2 border-t border-rosepink-100/60">
+                                <button onclick="editMemory(${item.id})" class="text-xs text-rosepink-600 hover:text-rosepink-800 font-medium px-2 py-1 rounded bg-rosepink-50 hover:bg-rosepink-100 transition-colors">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                </button>
+                                <button onclick="deleteMemory(${item.id})" class="text-xs text-red-500 hover:text-red-700 font-medium px-2 py-1 rounded bg-red-50 hover:bg-red-100 transition-colors">
+                                    <i class="fa-solid fa-trash"></i> Hapus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // --- DAYS COUNTER LOGIC ---
+        function updateCounter() {
+            const now = new Date();
+            const diffTime = Math.abs(now - anniversaryDate);
+
+            const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+            document.getElementById("daysCount").innerText = days;
+            document.getElementById("hoursCount").innerText = hours;
+            document.getElementById("minutesCount").innerText = minutes;
+            document.getElementById("secondsCount").innerText = seconds;
+        }
+
+        function updateDateText() {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("startDateText").innerText = anniversaryDate.toLocaleDateString('id-ID', options);
+        }
+
+        // --- FLOATING HEARTS PARTICLES ---
+        function createHeartParticle() {
+            const container = document.getElementById('heart-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            
+            const icons = ['❤️', '💖', '💕', '✨', '🌸'];
+            heart.innerText = icons[Math.floor(Math.random() * icons.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
+            
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        // --- MUSIC PLAYER ---
+        let isPlaying = false;
+        const bgMusic = document.getElementById("bgMusic");
+        const musicIcon = document.getElementById("musicIcon");
+        const musicStatus = document.getElementById("musicStatus");
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.className = "fa-solid fa-music";
+                musicStatus.innerText = "Klik untuk memutar";
+            } else {
+                bgMusic.play().then(() => {
+                    musicIcon.className = "fa-solid fa-pause";
+                    musicStatus.innerText = "Memutar lagu... 🎵";
+                }).catch(err => {
+                    console.log("Autoplay diblokir browser, pengguna perlu berinteraksi.");
+                });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // --- MODALS HANDLERS ---
+        function openLetterModal() {
+            const modal = document.getElementById('letterModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.children[0].classList.remove('scale-95');
+                modal.children[0].classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeLetterModal() {
+            const modal = document.getElementById('letterModal');
+            modal.children[0].classList.remove('scale-100');
+            modal.children[0].classList.add('scale-95');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function openDateModal() {
+            const modal = document.getElementById('dateModal');
+            const dateInput = document.getElementById('startDateInput');
+            
+            // Format format YYYY-MM-DD
+            const formattedDate = anniversaryDate.toISOString().split('T')[0];
+            dateInput.value = formattedDate;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeDateModal() {
+            const modal = document.getElementById('dateModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function saveStartDate() {
+            const dateVal = document.getElementById('startDateInput').value;
+            if (dateVal) {
+                anniversaryDate = new Date(dateVal + "T00:00:00");
+                updateDateText();
+                updateCounter();
+                closeDateModal();
+            }
+        }
+
+        // Add / Edit Memory Handlers
+        function openAddMemoryModal() {
+            document.getElementById('memoryModalTitle').innerText = "Tambah Kenangan Baru";
+            document.getElementById('memoryForm').reset();
+            document.getElementById('memoryId').value = "";
+
+            const modal = document.getElementById('memoryModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeMemoryModal() {
+            const modal = document.getElementById('memoryModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function editMemory(id) {
+            const item = memories.find(m => m.id === id);
+            if (item) {
+                document.getElementById('memoryModalTitle').innerText = "Edit Kenangan";
+                document.getElementById('memoryId').value = item.id;
+                document.getElementById('memoryTitle').value = item.title;
+                document.getElementById('memoryDate').value = item.date;
+                document.getElementById('memoryImage').value = item.image;
+                document.getElementById('memoryDesc').value = item.desc;
+
+                const modal = document.getElementById('memoryModal');
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            }
+        }
+
+        function deleteMemory(id) {
+            if (confirm("Apakah kamu yakin ingin menghapus kenangan ini?")) {
+                memories = memories.filter(m => m.id !== id);
+                renderTimeline();
+            }
+        }
+
+        function handleSaveMemory(event) {
+            event.preventDefault();
+            const id = document.getElementById('memoryId').value;
+            const title = document.getElementById('memoryTitle').value;
+            const date = document.getElementById('memoryDate').value;
+            const image = document.getElementById('memoryImage').value;
+            const desc = document.getElementById('memoryDesc').value;
+
+            if (id) {
+                // Update
+                const index = memories.findIndex(m => m.id == id);
+                if (index !== -1) {
+                    memories[index] = { id: parseInt(id), title, date, image, desc };
+                }
+            } else {
+                // New
+                const newId = memories.length ? Math.max(...memories.map(m => m.id)) + 1 : 1;
+                memories.push({ id: newId, title, date, image, desc });
+            }
+
+            renderTimeline();
+            closeMemoryModal();
+        }
+
+        // --- INIT ON LOAD ---
+        window.onload = function() {
+            renderTimeline();
+            updateDateText();
+            updateCounter();
+            setInterval(updateCounter, 1000);
+            setInterval(createHeartParticle, 400);
+        };
+    </script>
+</body>
+</html>
